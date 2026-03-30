@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>AEGIRA Discovery</title>
+<link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAgACADASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAABQYEAwj/xAAtEAACAQIDBQcFAQAAAAAAAAABAgMABAUGERITITFxFEFRgZGSoQciQmFywf/EABcBAQEBAQAAAAAAAAAAAAAAAAIAAQP/xAAeEQEAAgICAwEAAAAAAAAAAAABAAIDERIhEzFx0f/aAAwDAQACEQMRAD8A8ZVswa3FziUMRGq7WrdBxNY6cysio092/JF0B+TXTFXlcIbuicM02+4xZ2A0WUBxoPX5oqqfGYzi1vhfZl27y5cRxxLzYsdNPdw86wZxgt7PMFxh1q6vFZbNttryd0ADt5vtGlmpqynr9mUegg9OyHseX9jk8o093E/FEWcW+uo4u5m49O+nbuGO6uEE8m6s7cbUz/s8lHidKsQ6U+Su9hFfp9A+F2s2aJU3lzErQ4XEfymIP39FGp9aiZHZ3Z3YszHUk8yar8JzCl1jcULRrDaogitU7kHh1P8AgqdzBadhxm6twNFVyU/k8R8GllqeMavUNF5O5//Z">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#FAFAFA;color:#1B2B4B;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root{
+--navy:#1B2B4B;--navy-mid:#2E4A7A;--navy-lt:#3D6499;
+--steel:#4A6080;--steel-mid:#7A9CC8;--steel-lt:#B8CDE0;
+--paper:#FAFAFA;--paper2:#F4F6F9;--paper3:#E8EDF4;--paper-border:#D0DAE8;
+--dark:#0D1826;--dark-surface:#1B2B4B;
+--gold:#C8962A;--gold-pale:#FBF5E8;
+--green:#1A7A4A;--green-pale:#E8F5EE;
+--red:#B91C1C;--red-pale:#FEF2F2;
+--orange:#C2410C;--orange-pale:#FFF7ED;
+--blue-pale:#EBF0F7;
+}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+
+/* ===== LOGIN ===== */
+#login{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--dark);position:relative;overflow:hidden}
+#login::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(46,74,122,.15) 0%,transparent 70%);top:-200px;right:-100px}
+#login::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,42,.08) 0%,transparent 70%);bottom:-100px;left:-50px}
+.login-content{position:relative;z-index:1;text-align:center}
+.logo-splash{width:100px;height:auto;margin-bottom:20px;filter:brightness(1.1)}
+#login h1{color:#fff;font-size:20px;font-weight:600;letter-spacing:.18em;margin-bottom:4px}
+.tagline{color:var(--steel-mid);font-size:11px;letter-spacing:.28em;margin-bottom:36px;text-transform:uppercase}
+.ms-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 32px;background:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;color:#5e5e5e;letter-spacing:.02em;transition:all .2s;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.ms-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.ms-btn svg{width:20px;height:20px}
+
+/* ===== TRUST ===== */
+#trust{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;background:var(--paper);padding:20px}
+.trust-card{max-width:560px;width:100%;text-align:center}
+.trust-card h2{font-size:18px;font-weight:700;color:var(--navy);margin:16px 0 6px}
+.trust-card .sub{color:var(--steel);font-size:13px;margin-bottom:28px}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left;margin-bottom:28px}
+.ti{background:var(--paper2);border:1px solid var(--paper-border);border-radius:10px;padding:14px}
+.ti-icon{font-size:20px;margin-bottom:6px}
+.ti-title{font-weight:600;font-size:13px;color:var(--navy);margin-bottom:2px}
+.ti-desc{font-size:11px;color:var(--steel);line-height:1.5}
+.btn-primary{padding:12px 36px;background:var(--navy);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;letter-spacing:.08em;transition:all .2s;box-shadow:0 4px 24px rgba(27,43,75,.25)}
+.btn-primary:hover{background:var(--navy-mid);transform:translateY(-1px)}
+
+/* ===== TOPBAR ===== */
+.topbar{background:#fff;border-bottom:1px solid var(--paper-border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.topbar-logo{height:26px}
+.tb-title{font-size:14px;font-weight:600;color:var(--navy)}
+.tb-sub{font-size:11px;color:var(--steel)}
+.topbar-right{display:flex;gap:6px}
+.btn-sm{padding:7px 16px;font-size:12px;font-weight:600;border-radius:6px;border:1px solid var(--paper-border);background:#fff;color:var(--navy);letter-spacing:.02em;transition:all .15s;white-space:nowrap}
+.btn-sm:hover{border-color:var(--steel-lt);background:var(--paper2)}
+.btn-sm.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-sm.primary:hover{background:var(--navy-mid)}
+
+/* ===== TABS ===== */
+.tabs{background:#fff;border-bottom:1px solid var(--paper-border);padding:0 20px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{padding:11px 16px;font-size:13px;font-weight:500;color:var(--steel);background:none;border:none;border-bottom:2px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:color .15s;letter-spacing:.02em}
+.tab-btn.active{font-weight:600;color:var(--navy);border-bottom-color:var(--navy)}
+.tab-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--paper3);color:var(--steel)}
+.tab-btn.active .tab-badge{background:var(--navy);color:#fff}
+
+/* ===== CONTENT ===== */
+.content{padding:20px;max-width:1200px;margin:0 auto}
+
+/* ===== SUMMARY ===== */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.scard{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--paper-border);position:relative;overflow:hidden}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.scard .sc-label{font-size:11px;color:var(--steel);margin-bottom:4px;letter-spacing:.04em}
+.scard .sc-val{font-size:28px;font-weight:700;letter-spacing:-.02em}
+
+/* ===== HEATMAP ===== */
+.card{background:#fff;border-radius:10px;border:1px solid var(--paper-border);overflow:hidden}
+.card-header{padding:12px 16px;border-bottom:1px solid var(--paper-border);display:flex;justify-content:space-between;align-items:center}
+.card-title{font-size:13px;font-weight:600;color:var(--navy)}
+.card-sub{font-size:11px;color:var(--steel)}
+.hm-table{width:100%;border-collapse:collapse;font-size:13px}
+.hm-table th{padding:8px 10px;background:var(--paper2);border-bottom:1px solid var(--paper-border);font-weight:600;font-size:11px;color:var(--steel);text-align:center;letter-spacing:.04em}
+.hm-table th:first-child{text-align:left;min-width:110px}
+.hm-table td{padding:5px 8px;border-bottom:1px solid var(--paper2);text-align:center;vertical-align:middle}
+.hm-table td:first-child{text-align:left;font-weight:500;font-size:13px;color:var(--navy)}
+.hm-table tr:hover td:first-child{color:var(--navy-mid)}
+.hm-cell{border-radius:8px;padding:7px 6px;font-weight:700;font-size:15px;line-height:1;cursor:pointer;transition:all .15s;display:inline-block;min-width:42px}
+.hm-cell:hover{transform:scale(1.12);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.hm-cell.sel{outline:2.5px solid currentColor;outline-offset:2px}
+.hm-tools{font-size:9px;color:var(--steel-lt);margin-top:3px}
+.hm-empty{color:var(--steel-lt);font-size:11px}
+
+/* ===== PANEL ===== */
+.panel{position:fixed;top:0;right:0;bottom:0;width:340px;background:#fff;border-left:1px solid var(--paper-border);z-index:200;overflow-y:auto;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(27,43,75,.08)}
+.panel.open{transform:translateX(0)}
+.panel-head{padding:14px 16px;background:var(--paper2);border-bottom:1px solid var(--paper-border);display:flex;justify-content:space-between;align-items:flex-start}
+.panel-close{background:none;border:none;font-size:18px;color:var(--steel);padding:2px 6px;border-radius:4px}
+.panel-close:hover{background:var(--paper3)}
+.ph-dept{font-size:14px;font-weight:700;color:var(--navy)}
+.ph-cat{font-size:12px;color:var(--steel);margin-top:2px}
+.tool-card{padding:12px 16px;border-bottom:1px solid var(--paper2);cursor:pointer;transition:background .12s}
+.tool-card:hover{background:var(--paper2)}
+.tool-card.expanded{background:var(--blue-pale)}
+.tc-row{display:flex;justify-content:space-between;align-items:center}
+.tc-name{font-weight:600;font-size:13px;color:var(--navy)}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.04em}
+.b-red{background:var(--red-pale);color:var(--red)}
+.b-orange{background:var(--orange-pale);color:var(--orange)}
+.b-green{background:var(--green-pale);color:var(--green)}
+.pill{font-size:10px;font-weight:600;padding:3px 9px;border-radius:12px}
+.p-approved{background:var(--green-pale);color:var(--green)}
+.p-blocked{background:var(--red-pale);color:var(--red)}
+.p-grey{background:var(--orange-pale);color:var(--orange)}
+.p-hitl{background:var(--blue-pale);color:var(--navy-mid)}
+.p-unknown{background:var(--paper3);color:var(--steel)}
+.tc-detail{margin-top:10px;padding-top:10px;border-top:1px solid var(--paper-border);font-size:12px;color:var(--steel);line-height:1.8}
+.tc-detail span{font-weight:600;color:var(--navy)}
+.tc-btns{display:flex;gap:5px;margin-top:10px}
+.tc-btns button{flex:1;padding:6px 0;font-size:11px;font-weight:600;border-radius:6px;border:1px solid var(--paper-border);background:#fff;color:var(--navy);letter-spacing:.02em;transition:all .15s}
+.tc-btns button:hover{background:var(--paper2)}
+.tc-btns .btn-d{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tc-btns .btn-r{color:var(--red);border-color:var(--red-pale)}
+.tc-btns .btn-r:hover{background:var(--red-pale)}
+
+/* ===== HITL ===== */
+.hitl-card{padding:14px 16px;border-bottom:1px solid var(--paper2);display:flex;gap:14px;align-items:flex-start}
+.hitl-num{width:34px;height:34px;border-radius:8px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--navy-mid);flex-shrink:0}
+.hitl-body{flex:1;min-width:0}
+.hitl-title{font-weight:600;font-size:14px;color:var(--navy)}
+.hitl-url{font-weight:400;color:var(--steel);font-size:12px}
+.hitl-class{font-size:12px;color:var(--steel);margin:4px 0}
+.hitl-class b{color:var(--red);font-weight:600}
+.hitl-meta{font-size:11px;color:var(--steel-lt)}
+.hitl-actions{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap}
+.hitl-actions button{padding:7px 12px;font-size:12px;font-weight:600;border-radius:6px;border:1px solid var(--paper-border);background:#fff;color:var(--navy);transition:all .15s;letter-spacing:.02em}
+.hitl-actions button:hover{background:var(--paper2)}
+.ha-confirm{background:var(--green)!important;color:#fff!important;border-color:var(--green)!important}
+.ha-confirm:hover{opacity:.9}
+.ha-reject{color:var(--red)!important}
+.ha-reject:hover{background:var(--red-pale)!important}
+
+/* ===== REQUEST ===== */
+.req-card{padding:14px 16px;border-bottom:1px solid var(--paper2);display:flex;gap:14px;align-items:flex-start}
+.req-body{flex:1}
+.req-title{font-weight:600;font-size:14px;color:var(--navy)}
+.req-meta{font-size:12px;color:var(--steel);margin:4px 0}
+.req-score{font-size:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+/* ===== REPORT ===== */
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.report-card{padding:16px;background:var(--paper2);border:1px solid var(--paper-border);border-radius:10px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .15s}
+.report-card:hover{border-color:var(--steel-lt);background:var(--paper3);transform:translateY(-1px)}
+.rc-icon{width:40px;height:40px;border-radius:8px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;letter-spacing:.04em}
+.rc-label{font-weight:600;font-size:13px;color:var(--navy)}
+.rc-desc{font-size:11px;color:var(--steel)}
+
+/* ===== SCAN ===== */
+#scanOverlay{position:fixed;inset:0;background:rgba(13,24,38,.55);backdrop-filter:blur(4px);z-index:300;display:flex;align-items:center;justify-content:center}
+.scan-modal{background:#fff;border-radius:14px;padding:32px 36px;text-align:center;width:92%;max-width:420px;box-shadow:0 24px 64px rgba(27,43,75,.2)}
+.scan-modal h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.scan-modal p{font-size:12px;color:var(--steel);margin-bottom:18px}
+.progress-bar{height:5px;background:var(--paper3);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy-mid),var(--navy));border-radius:3px;width:0;transition:width .3s linear}
+.scan-steps{text-align:left;font-size:12px;color:var(--steel);line-height:2.2}
+.scan-steps .done{color:var(--green)}
+.scan-steps .active{color:var(--navy);font-weight:600}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 22px;border-radius:10px;font-size:13px;font-weight:500;z-index:400;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(27,43,75,.3);letter-spacing:.02em}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast .t-check{color:var(--gold);font-size:15px}
+
+/* ===== MANUAL ENTRY MODAL ===== */
+#manualOverlay{position:fixed;inset:0;background:rgba(13,24,38,.55);backdrop-filter:blur(4px);z-index:300;display:flex;align-items:center;justify-content:center;padding:16px}
+.manual-modal{background:#fff;border-radius:14px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(27,43,75,.2)}
+.mm-header{padding:16px 20px;border-bottom:1px solid var(--paper-border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;border-radius:14px 14px 0 0;z-index:1}
+.mm-header h3{font-size:16px;font-weight:700;color:var(--navy)}
+.mm-body{padding:20px}
+.mm-field{margin-bottom:14px}
+.mm-field label{display:block;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:4px;letter-spacing:.04em}
+.mm-field input,.mm-field select,.mm-field textarea{width:100%;padding:9px 12px;border:1px solid var(--paper-border);border-radius:6px;font-family:inherit;font-size:13px;color:var(--navy);background:#fff;transition:border-color .15s}
+.mm-field input:focus,.mm-field select:focus,.mm-field textarea:focus{outline:none;border-color:var(--navy-mid)}
+.mm-field textarea{resize:vertical;min-height:60px}
+.mm-field .mm-hint{font-size:11px;color:var(--steel);margin-top:2px}
+.mm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mm-footer{padding:16px 20px;border-top:1px solid var(--paper-border);display:flex;justify-content:space-between;align-items:center;position:sticky;bottom:0;background:#fff;border-radius:0 0 14px 14px}
+.mm-step{font-size:12px;color:var(--steel)}
+.wizard-q{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.wizard-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.wizard-opt{padding:12px 14px;border:1px solid var(--paper-border);border-radius:8px;background:var(--paper2);cursor:pointer;transition:all .15s;font-size:13px;text-align:left;color:var(--navy)}
+.wizard-opt:hover{border-color:var(--navy-mid);background:var(--blue-pale)}
+.wizard-opt.selected{border-color:var(--navy);background:var(--blue-pale);font-weight:600}
+.wizard-result{padding:16px;border-radius:10px;text-align:center}
+.wizard-result h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.wizard-result p{font-size:12px;color:var(--steel)}
+.wizard-result .wr-ref{font-size:11px;color:var(--steel-mid);margin-top:6px;font-style:italic}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+.summary{grid-template-columns:1fr 1fr}
+.topbar-right{display:none}
+.report-grid{grid-template-columns:1fr}
+.hitl-card,.req-card{flex-direction:column}
+.hitl-actions{width:100%}
+.panel{width:100%}
+.trust-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+.summary{grid-template-columns:1fr 1fr}
+.scard .sc-val{font-size:22px}
+.hm-table{font-size:11px}
+.hm-cell{font-size:13px;min-width:36px}
+.content{padding:12px}
+.tab-btn{padding:10px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+<div class="login-content">
+<img class="logo-splash" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAB4AI0DASIAAhEBAxEB/8QAHAABAAMAAwEBAAAAAAAAAAAAAAQFBgECAwcI/8QAOhAAAQQBAQYDAwoGAwEAAAAAAQACAwQRBQYSITFBURMiYRQjcTJCUmKBkaGxwdEHNUNy4fAzNFOS/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAECBAMF/8QAIxEAAwACAgIDAQADAAAAAAAAAAECAxESITFBBBMiYSOBsf/aAAwDAQACEQMRAD8A/GSIiACIiACIiACIrHQqPtlreePcx8XevonMunpCb0tsttmtKY2JtuwzMjvkNPzR3+Kl7Q6YyzTMkMYE0Yy3AxkdlZRcBgL15herOCeHEyPI+Wz5seaK52o041bXtEbfdSnjj5rlTLy7hxXFmuXtbQREUjCLnB3S7BwDglcIAIiIAIiIAIiIAIiIA7wRPnmbFGMuccBbLTq0dSu2Fg5cz3PdVegU/Bj9okHnePKD0H+VdRrd8bHpcmZ8tb6Pdp3Rld60zJomyxuDmuHAhUu0d/2ar4EZ95KMfBvVR9kbuHOpPPDi5n6hdvvSycCPrbnZor1WO5UkryDg4cD2PQrAXK8lWy+CUYew4Pr6r6KHtYwue4NaBxJKyG1d2hcnYaoLpGcHSD5Lh29VHzInSr2Vhb3oo1N0TS72s6pBpum132LU7t1jG/mewHMnoudD0m/repxadptd09iU8GjkB1JPQDuV9+2e0jRf4VbI2tatujs6iY918uMGR5+TCzs3PM9cEnlhZcOF5O30kdcmTh0vJ8p/ijpdHZh2n7KU5GT2akXj6jO3+pYkAO6PqtaAAPrE9ViVK1a/a1TU7Oo3ZTLYsyOlkcericlRVytpvaLlNLsIiKRhERABERABT9Hp+02N5490zifU9lDgifNM2KMZc44C1NOBleu2JnIcz3PddcUcn34IutIkt5Ls+VkMTpZDhrBkro1Um0V3ff7JGfK05ee57LbeThOzhM8norb1h9qy+Z/MngOw6BecEr4ZmSxnD2HIK6IvO297NRM1HUrd53vpPJ0Y3g0Kbsrs3qW0d72ejHhjT72Z/BkY9T39OZVzshsRZ1IstamX1Kh4huPeSD0HQepX1IXNG2Y0UZ8KnThHla3m4/m5xWzF8asn7yPSM95lP5nyWOyWiaHsXo0r2PYwNZv27k2A52O/Ydmj8SvjX8UNs59rNWAi349NrEtrRHgXd3u9T+A4d1abU6hrm2UEr2NdT06IF1esT5piPnO9e3ZfPCCCQQQR0KPk5fyolan/AKLDj7dU9s4REWI0hERABERABEU/SKnjzeI8ZjYePqeyaTb0hN6J+iVfBiMzxiR44Z6BWYXRqSyMhiMkjg1rea3zKhGdt0zz1K4KdYvGPEdwYPXussSXEkkknmVOkFvVbh8GJ7xya0cmhXmnbOQV2ifUpWnHHczho+J6rO1WauvB0TULsodL0u7qUm7Wiy0fKkdwa34lb7ZvZ7TtMxPIG2bI4+JIPKz+1v6lVlnaLTaMYjrDxy0eVsYw0f76LO6ptBqN8GN0vgwn+nHwB+J6rpLxYe32yXzv+I3utbZU9PJhrPbask44O8jT9Y/sqlsM+o2W39Wse1y4zG3+nGPqj9VglbaJrUtBwilzJX+j1b8P2Qvk86/yeA+nivz5PodV27jCx+3ej+zWBqNdmIZjiQD5r/8AK0el3a9uIS15Q9vXuPirKeCG9Skq2G70cjcH09Vuy41mjS/0cJpxR8hRTNYoTabqEtSbmw+V30m9Coa8Zpp6ZuT2EREgCIiAPWrC+xM2JnM9ew7rSQRsrwhjcNY3qVnK1mWuHeCQ0u5uxkrrLNLKcySOf8SukWo9dkVLov36jWa/cY9r3f3YaPt/ZRJbNJ79+7K+yWnyxRDdYPtPEqnRFZaryNQkXT9oJ44xFRghqsH0RkqrtWrFl+9YmfIfrFeKKauq8salLwERFIwiIgD1q2Z6solryujeOrStTpG2L4yGX4d4fTj5/aFkUXTHlvG/yyahV5N7tC3TtpNPEtCxG+5CCWMzhzh1bg/gsGQQSCCCOYKAkEEEgjkUe5z3Fz3FzjxJJySnlyfY+TXYonitHCIi5FhFyAScAZK0tSlQqQV4rsbHzTO6jke3wVxDomq0ZlFM1amaVx0WDuHiw9wummMY/UIGPaHNLwCD1U8XvQ99bIyLRaiaVOx4Q0tso3Qd4BQbdum6u5jdMET3DAeeiuoU9bEq36KtF70KzrdtkDTjePE9grqzLpWmOFdtUTygecnH5pTG1t9IHWnozyK9NrTLEbmzabJGcZaWDie3FUbsZOAQOyVJLw9jT2cIrjU60EejVZWRNbI/G84DieCjaFFHNqcccrGvYc5BGRyTcNUpEq62QEV7etafWtSVzpkTtw4yDzXsatDUdLlswV/Z3szjHDiP0VfV6T7Fz/hnERW+z9KKYyWrTQYImngeRKiZdPSKb0tlQiu9WqVptOjv0Y2sYPltCpEVLl6BPZb7N0hNM63KPdQ8RnkT/hSbtvR7U/izPnLmjAxkAfBUbZpWs3GyvDPohxwvNUsmp0kTx29mmutg1fT3PrEukh+Tkcfh9qpNJ4anXHXxAo8cssYIjkezPPdcQuA94fvhzg7Od7PHKKvk0/Y1Olo1eoSaq2xinAx8e6OLgOf3qr1Vmr2K+9brtbHHl2W4H6qr9psf+8v/ANlHWLDgQ6eUgjBBeVV5VW/JMxok6HZZV1Bj5Dhjhuk9sqbrWmWJLT7VZvisk4ndPEfuqRe8FuzB/wAU8jB2B4KZpceLKa72jSaK/UCd23CGRNZhpLePBZix/wBiT+8/mvWe9bnbuy2JHN7Z4KMi75JIJnT2XmsfyGn/AL0UTZz+bRfb+SgullcwMdI8tHJpccBcMe9jt5jnNd3BwUO90qBT1ovtR1KGLUXwy0IJA12HPI8xC9tcdO7TGyUC01XN84YOIH7LNPc57i57i5x5knJXdk0zG7rZXtb2DiAq+5vafsXDwK0L7E7IYxlzjhaW5Lp1Oo3TZnvA3QTuDifj8VmGPfG7eY9zT3BwUe5z3bz3Fx7k5KmL4p9Dqds0umWdLGacDpMSnGHjhnCo9VpupXHRHO6eLD3CigkEEEgjiCF2fLLJjfke/HLedlFXynTQKdPZI9ni9h3/ABR4/wArdz83l9/VeFhjWOaG9WNJ49SERQM6vawPw1+8O+MKZPXhaYwMMYX7u/v53m/S7IiEM4khga6PxGGHecWubv5wOjvxSKvCLL4nuDtxnEh3Au9ERP2I7VYK7/FEpDD4rWtBd0Oc/kF0irwPgjcXkSOe4YJGCAB9x4oiQHWKvE6m55kaJjlzW55gf6fuXJgh8DfD/O2IOIJ6kjl+yImBxLExsDXNjJBx7zfHE9RhcXoo43gRA7vHjnmiJMDwcGhrSHZJ5jHJexEPs8Z8PD3OIJ3u2On2oiQz2nr1xOxkbgQ5zmnDuHA8Oa4ZXibNHHI1xd4ZL2hw55OPwx6oioQbFA2Wyx7Wu8MFzcScDxAx681CREmM/9k=" alt="AEGIRA">
+<h1>AEGIRA</h1>
+<div class="tagline">AI &middot; GOVERNANCE &middot; TRUST</div>
+<button class="ms-btn" onclick="showTrust()">
+<svg viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#F25022"/><rect x="11" y="1" width="9" height="9" fill="#7FBA00"/><rect x="1" y="11" width="9" height="9" fill="#00A4EF"/><rect x="11" y="11" width="9" height="9" fill="#FFB900"/></svg>
+Anmelden mit Microsoft
+</button>
+</div>
+</div>
+
+<!-- TRUST -->
+<div id="trust" class="hidden">
+<div class="trust-card">
+<img class="logo-splash" src="data:image/jpeg;base64,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" alt="AEGIRA" style="width:80px">
+<h2>Ihre Daten bleiben in Ihrem Azure-Tenant</h2>
+<p class="sub">AEGIRA hat keinen Zugriff auf Ihre Firewall-Logs. Der gesamte Code l&auml;uft in Ihrer Subscription.</p>
+<div class="trust-grid">
+<div class="ti"><div class="ti-icon">&#128274;</div><div class="ti-title">Daten bleiben bei Ihnen</div><div class="ti-desc">Firewall-Logs, Scan-Ergebnisse und Audit-Trail verbleiben in Ihrem Azure-Tenant.</div></div>
+<div class="ti"><div class="ti-icon">&#128737;</div><div class="ti-title">Microsoft Marketplace gepr&uuml;ft</div><div class="ti-desc">AEGIRA wird &uuml;ber den Azure Marketplace distribuiert. Microsoft pr&uuml;ft jede App.</div></div>
+<div class="ti"><div class="ti-icon">&#128065;</div><div class="ti-title">Open Source Klassifizierung</div><div class="ti-desc">AI URL Registry und EU AI Act Classifier sind auf GitHub einsehbar.</div></div>
+<div class="ti"><div class="ti-icon">&#128273;</div><div class="ti-title">Kein Agent, kein Endpoint</div><div class="ti-desc">Keine Installation auf Endger&auml;ten. Nur Firewall-Logs, die ohnehin existieren.</div></div>
+</div>
+<button class="btn-primary" onclick="showApp()">Weiter zum Dashboard &rarr;</button>
+</div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+<div class="topbar">
+<div class="topbar-left">
+<img class="topbar-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAoAC8DASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAAIDBAUGAQj/xAAvEAACAQMBBgMHBQAAAAAAAAABAgMABBEhBQYSMUFRE2FxFCIjMoHB0UJzseHw/8QAGAEBAQEBAQAAAAAAAAAAAAAAAQADBAL/xAAfEQADAQEAAQUBAAAAAAAAAAAAARECEjEDEyFBUcH/2gAMAwEAAhEDEQA/APGVFFP2Ns11cLEug5sewpSriItd17ASze1zKCiH3Aep7/Snd7NnhWG0IQOB8CTHQ9D9ac2rdLY7PFtB7ruOFcfpXqac3ctttbftl2bbCOG0jGLi6l0RE8yew6DWuuY59qV/0wrvf0Z6zsrm7Wd4IyyW8RllboijAyT6kAdyQKj1sd8tpbN2fsuPdbd6OQWYZZry8kXD30g+U/trk4HLJz51jq5t55cNcuqnQCSAASTyAq/sI4rC3+Iy+K2rDIz6VTR285ga5RSEQ/MDr/tRXRaytCJyyBWyQWcAnHOnDeXYWlSe8lh7Qbm/ka6k6QwnCDsCx+1Pybz3btFF4USWMfK1QYQ+vc+tVMVpNJEJMxqGzw8bhS2O2aQkEjqjKujvwLr10/NPe14DlPyava72G8OyxLayqt/AMiJ9Hdeq+fcY+9Y+pE9pNChkbgKhuAlXBw3Y4pMttNHCkzrhJORz/Par1dPbrXyWEsqJkgXt1EqR8EYjVOHgKjBB55665rqT3KWwtjEpQZHzEcz1wfOiivHTGILe4uYViPgozRj4bEnIB1xodR600rzoiDgXEcnij10/qiimsYKmubm5ThlCuFcv+R6Uq4vLp0kE6Rsjke7wgYxyxjXTBFFFHT/QiP/Z" alt="AEGIRA">
+<div><div class="tb-title">Discovery</div><div class="tb-sub" id="scanStatus">Letzter Scan: Heute, 02:00 &middot; 17 AI-Tools &middot; 3 HITL ausstehend</div></div>
+</div>
+<div class="topbar-right">
+<button class="btn-sm primary" onclick="switchTab('report')">Report exportieren</button>
+<button class="btn-sm" onclick="openManualEntry()" style="border-color:var(--gold);color:var(--gold)">+ AI-System erfassen</button>
+<button class="btn-sm" onclick="startScan()">Scan starten</button>
+</div>
+</div>
+
+<div class="tabs">
+<button class="tab-btn active" data-tab="heatmap" onclick="switchTab('heatmap')">AI Radar</button>
+<button class="tab-btn" data-tab="hitl" onclick="switchTab('hitl')">HITL-Queue <span class="tab-badge" id="hitlBadge">3</span></button>
+<button class="tab-btn" data-tab="requests" onclick="switchTab('requests')">Tool-Antr&auml;ge <span class="tab-badge">2</span></button>
+<button class="tab-btn" data-tab="report" onclick="switchTab('report')">Report</button>
+</div>
+
+<div class="content">
+<div id="tab-heatmap">
+<div class="summary">
+<div class="scard"><div class="sc-label">Erkannte AI-Tools</div><div class="sc-val" style="color:var(--navy-mid)">17</div></div>
+<div class="scard"><div class="sc-label">High Risk / GPAI</div><div class="sc-val" style="color:var(--red)">6</div></div>
+<div class="scard"><div class="sc-label">HITL ausstehend</div><div class="sc-val" style="color:var(--gold)" id="hitlCount">3</div></div>
+<div class="scard"><div class="sc-label">Blockiert</div><div class="sc-val" style="color:var(--steel)">2</div></div>
+</div>
+<div class="card">
+<div class="card-header"><span class="card-title">Risk Heatmap &mdash; Abteilung &times; AI-Kategorie (30 Tage)</span><span class="card-sub">Klick auf Zelle f&uuml;r Details</span></div>
+<div style="overflow-x:auto"><table class="hm-table" id="hmTable"></table></div>
+</div>
+</div>
+<div id="tab-hitl" class="hidden"><div class="card"><div class="card-header"><span class="card-title">HITL-Queue &mdash; Klassifizierungen best&auml;tigen</span><span class="card-sub" id="hitlPending">3 ausstehend</span></div><div id="hitlList"></div></div></div>
+<div id="tab-requests" class="hidden"><div class="card"><div class="card-header"><span class="card-title">Tool-Antr&auml;ge &mdash; Freigabe / Ablehnung</span><span class="card-sub">2 offen</span></div><div id="reqList"></div></div></div>
+<div id="tab-report" class="hidden"><div class="card" style="padding:20px"><div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:16px">Executive Report &amp; AI Use Policy exportieren</div><div class="report-grid">
+<div class="report-card" onclick="openReport()"><div class="rc-icon">PDF</div><div><div class="rc-label">Executive Report</div><div class="rc-desc">Signiert &mdash; Wirtschaftspr&uuml;fer-ready</div></div></div>
+<div class="report-card" onclick="openReport()"><div class="rc-icon">HTML</div><div><div class="rc-label">AI Use Policy (Intranet)</div><div class="rc-desc">Single-File f&uuml;r SharePoint / Confluence</div></div></div>
+<div class="report-card"><div class="rc-icon">DOC</div><div><div class="rc-label">AI Policy (DOCX)</div><div class="rc-desc">Editierbar &mdash; Vorstands-Freigabe</div></div></div>
+<div class="report-card"><div class="rc-icon" style="font-size:14px">&#123; &#125;</div><div><div class="rc-label">Whitelist / Blacklist</div><div class="rc-desc">JSON f&uuml;r Firewall / ITSM-Import</div></div></div>
+</div></div></div>
+</div>
+</div>
+
+<div class="panel" id="panel"><div class="panel-head"><div><div class="ph-dept" id="panelDept"></div><div class="ph-cat" id="panelCat"></div></div><button class="panel-close" onclick="closePanel()">&times;</button></div><div id="panelTools"></div></div>
+<div id="manualOverlay" class="hidden"></div>
+<div id="scanOverlay" class="hidden"></div>
+<div class="toast" id="toast"><span class="t-check">&#10003;</span><span id="toastMsg"></span></div>
+
+<script>
+const DEPTS=["Marketing","Vertrieb","HR","IT","Finanzen","Produktion","Gesch\u00e4ftsf\u00fchrung"];
+const CATS=["GPAI","High Risk SaaS","Limited Risk","Minimal Risk","Ungenehmigt"];
+const D={};
+function a(d,c,n,r,t){D[d+"|"+c]={count:n,risk:r,tools:t}}
+a("Marketing","GPAI",89,"high",[{n:"ChatGPT Free",s:8,c:"GPAI",st:"blocked",t:[12,18,22,15,12,5,5]},{n:"Midjourney",s:6,c:"GPAI",st:"grey",t:[8,10,12,14,11,9,10]}]);
+a("Marketing","Limited Risk",34,"low",[{n:"Canva AI",s:3,c:"Limited Risk",st:"approved",t:[4,5,5,5,4,6,5]},{n:"DeepL",s:2,c:"Limited Risk",st:"approved",t:[3,3,4,4,5,5,6]}]);
+a("Marketing","Minimal Risk",12,"low",[{n:"Beautiful.ai",s:1,c:"Minimal",st:"approved",t:[1,2,2,2,1,2,2]}]);
+a("HR","GPAI",47,"critical",[{n:"ChatGPT Free",s:8,c:"GPAI",st:"blocked",t:[5,8,12,7,6,5,4]},{n:"Claude.ai",s:5,c:"GPAI",st:"grey",t:[2,3,4,5,6,8,15]}]);
+a("HR","High Risk SaaS",23,"critical",[{n:"Rexx Systems",s:9,c:"Annex III Nr. 4",st:"hitl",t:[3,3,4,3,3,4,3]},{n:"HireVue",s:9,c:"Annex III Nr. 4",st:"hitl",t:[1,2,2,3,4,5,6]}]);
+a("IT","GPAI",156,"medium",[{n:"GitHub Copilot",s:3,c:"GPAI",st:"approved",t:[20,22,22,23,22,24,23]},{n:"ChatGPT Enterprise",s:3,c:"GPAI",st:"approved",t:[15,18,20,22,20,18,19]},{n:"Claude.ai",s:5,c:"GPAI",st:"approved",t:[5,8,10,12,15,18,20]}]);
+a("IT","Minimal Risk",67,"low",[{n:"Cursor",s:2,c:"Minimal",st:"approved",t:[8,10,10,10,9,10,10]},{n:"Replit",s:2,c:"Minimal",st:"approved",t:[3,4,3,4,3,4,3]}]);
+a("Vertrieb","GPAI",28,"medium",[{n:"ChatGPT Enterprise",s:3,c:"GPAI",st:"approved",t:[3,4,5,4,4,4,4]}]);
+a("Vertrieb","Limited Risk",15,"low",[{n:"Grammarly",s:3,c:"Limited Risk",st:"approved",t:[2,2,2,3,2,2,2]}]);
+a("Finanzen","GPAI",12,"high",[{n:"ChatGPT Free",s:8,c:"GPAI",st:"blocked",t:[3,2,2,1,2,1,1]}]);
+a("Finanzen","High Risk SaaS",5,"critical",[{n:"Zest AI",s:9,c:"Annex III Nr. 5",st:"hitl",t:[0,0,1,1,1,1,1]}]);
+a("Gesch\u00e4ftsf\u00fchrung","GPAI",31,"medium",[{n:"ChatGPT Enterprise",s:3,c:"GPAI",st:"approved",t:[4,4,5,4,5,4,5]},{n:"Perplexity",s:4,c:"GPAI",st:"grey",t:[2,3,3,4,4,5,6]}]);
+a("Produktion","Ungenehmigt",8,"high",[{n:"DeepSeek",s:7,c:"GPAI",st:"unknown",t:[0,0,1,1,2,2,2]},{n:"X-Pilot.ai",s:6,c:"Limited Risk",st:"unknown",t:[0,0,0,1,1,2,4]}]);
+
+const riskBg=r=>r==="critical"?"#B91C1C":r==="high"?"#C2410C":r==="medium"?"#C8962A":r==="low"?"#1A7A4A":"#B8CDE0";
+const riskFg=r=>r==="medium"?"#fff":"#fff";
+const badgeCls=s=>s>=7?"b-red":s>=4?"b-orange":"b-green";
+const pillMap={approved:["p-approved","Freigegeben"],blocked:["p-blocked","Blockiert"],grey:["p-grey","Eingeschr\u00e4nkt"],hitl:["p-hitl","HITL ausstehend"],unknown:["p-unknown","Ungenehmigt"]};
+
+function spark(d,clr){const w=60,h=20,mx=Math.max(...d),mn=Math.min(...d),r=mx-mn||1;const p=d.map((v,i)=>`${(i/(d.length-1))*w},${h-((v-mn)/r)*h}`).join(" ");return`<svg width="${w}" height="${h}" style="display:block"><polyline points="${p}" fill="none" stroke="${clr}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>`;}
+
+let selKey=null;
+function buildHM(){let h='<thead><tr><th>Abteilung</th>';CATS.forEach(c=>h+=`<th>${c}</th>`);h+='</tr></thead><tbody>';
+DEPTS.forEach(d=>{h+=`<tr><td>${d}</td>`;CATS.forEach(c=>{const k=d+"|"+c,cell=D[k];
+if(!cell){h+=`<td><span class="hm-empty">\u2014</span></td>`;return;}
+const bg=riskBg(cell.risk),sel=selKey===k?" sel":"";
+h+=`<td><div class="hm-cell${sel}" style="background:${bg};color:${riskFg(cell.risk)}" onclick="clickCell('${k}')">${cell.count}</div><div class="hm-tools">${cell.tools.length} Tool${cell.tools.length>1?"s":""}</div></td>`;
+});h+='</tr>';});h+='</tbody>';document.getElementById("hmTable").innerHTML=h;}
+
+function clickCell(k){if(selKey===k){closePanel();return;}selKey=k;buildHM();
+const cell=D[k],[dept,cat]=k.split("|");
+document.getElementById("panelDept").textContent=dept;
+document.getElementById("panelCat").textContent=cat+" \u00b7 "+cell.count+" Zugriffe";
+let html="";cell.tools.forEach((t,i)=>{
+const bc=badgeCls(t.s),pm=pillMap[t.st]||pillMap.unknown;
+const clr=t.s>=7?"#B91C1C":t.s>=4?"#C8962A":"#1A7A4A";
+const trend=t.t[t.t.length-1]>t.t[0]?'<span style="color:#B91C1C">\u2191 steigend</span>':'<span style="color:#1A7A4A">\u2193 fallend</span>';
+html+=`<div class="tool-card" id="tc${i}" onclick="toggleTool(${i})">
+<div class="tc-row"><span class="tc-name">${t.n}</span><span class="badge ${bc}">${t.s}/10</span></div>
+<div class="tc-row" style="margin-top:5px"><span class="pill ${pm[0]}">${pm[1]}</span>${spark(t.t,clr)}</div>
+<div class="tc-detail hidden" id="td${i}"><div>EU AI Act: <span>${t.c}</span></div><div>Risk Score: <span>${t.s}/10</span></div><div>Trend 7 Tage: ${trend}</div>
+<div class="tc-btns"><button class="btn-d">Details</button><button class="btn-r">Blockieren</button></div></div></div>`;
+});document.getElementById("panelTools").innerHTML=html;document.getElementById("panel").classList.add("open");}
+function toggleTool(i){document.getElementById("td"+i).classList.toggle("hidden");document.getElementById("tc"+i).classList.toggle("expanded");}
+function closePanel(){selKey=null;document.getElementById("panel").classList.remove("open");buildHM();}
+
+let hitlData=[{id:1,tool:"Rexx Systems",url:"rexx-systems.com",cls:"High Risk \u2014 Annex III Nr. 4 (Besch\u00e4ftigung)",dept:"HR",acc:23,since:"12.02.2026"},{id:2,tool:"HireVue",url:"hirevue.com",cls:"High Risk \u2014 Annex III Nr. 4 (Besch\u00e4ftigung)",dept:"HR",acc:21,since:"28.01.2026"},{id:3,tool:"Zest AI",url:"zest.ai",cls:"High Risk \u2014 Annex III Nr. 5 (Kreditw\u00fcrdigkeit)",dept:"Finanzen",acc:5,since:"15.03.2026"}];
+function buildHitl(){let h="";hitlData.forEach(item=>{h+=`<div class="hitl-card" id="hitl${item.id}"><div class="hitl-num">${item.id}</div><div class="hitl-body"><div class="hitl-title">${item.tool} <span class="hitl-url">(${item.url})</span></div><div class="hitl-class">Auto-Klassifizierung: <b>${item.cls}</b></div><div class="hitl-meta">Abt. ${item.dept} \u00b7 ${item.acc} Zugriffe \u00b7 Seit ${item.since}</div></div><div class="hitl-actions"><button class="ha-confirm" onclick="confirmHitl(${item.id},'${item.tool}')">Best\u00e4tigen</button><button>\u00c4ndern</button><button class="ha-reject">Ablehnen</button></div></div>`;});
+if(!hitlData.length) h='<div style="padding:40px;text-align:center;color:var(--steel)">Keine offenen Klassifizierungen \u2014 alles best\u00e4tigt \u2713</div>';
+document.getElementById("hitlList").innerHTML=h;document.getElementById("hitlBadge").textContent=hitlData.length;document.getElementById("hitlPending").textContent=hitlData.length+" ausstehend";document.getElementById("hitlCount").textContent=hitlData.length;}
+
+function confirmHitl(id,name){const el=document.getElementById("hitl"+id);el.style.transition="all .35s";el.style.opacity="0";el.style.transform="translateX(20px)";setTimeout(()=>{hitlData=hitlData.filter(h=>h.id!==id);buildHitl();},400);showToast("Klassifizierung f\u00fcr "+name+" best\u00e4tigt");}
+
+function buildReq(){const reqs=[{tool:"Notion AI",by:"L. Weber (Marketing)",date:"28.03.2026",score:4,rec:"Freigeben",rc:"color:var(--green)"},{tool:"Synthesia",by:"M. Klein (HR)",date:"27.03.2026",score:5,rec:"Einschr\u00e4nken",rc:"color:var(--orange)"}];
+let h="";reqs.forEach(r=>{const bc=badgeCls(r.score);h+=`<div class="req-card"><div class="req-body"><div class="req-title">${r.tool}</div><div class="req-meta">Beantragt von: ${r.by} \u00b7 ${r.date}</div><div class="req-score">Auto-Score: <span class="badge ${bc}">${r.score}/10</span> <span style="${r.rc};font-weight:600">Empfehlung: ${r.rec}</span></div></div><div class="hitl-actions"><button class="ha-confirm">Freigeben</button><button>Einschr\u00e4nken</button><button class="ha-reject">Ablehnen</button></div></div>`;});document.getElementById("reqList").innerHTML=h;}
+
+function switchTab(t){document.querySelectorAll("[id^='tab-']").forEach(e=>e.classList.add("hidden"));document.getElementById("tab-"+t).classList.remove("hidden");document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===t));closePanel();}
+
+function startScan(){const ov=document.getElementById("scanOverlay");ov.classList.remove("hidden");ov.innerHTML=`<div class="scan-modal"><h3>Scan l\u00e4uft\u2026</h3><p>Firewall-Logs der letzten 30 Tage werden analysiert</p><div class="progress-bar"><div class="progress-fill" id="pf"></div></div><div class="scan-steps" id="ss"></div></div>`;
+const steps=["Verbindung zu Log Analytics\u2026","Firewall-Logs abrufen (30 Tage)\u2026","FQDNs gegen AI URL Registry matchen\u2026","EU AI Act Klassifizierung\u2026","Heatmap aktualisieren\u2026"];let step=0;
+function tick(){if(step>=steps.length){document.getElementById("pf").style.width="100%";setTimeout(()=>{ov.classList.add("hidden");showToast("Scan abgeschlossen \u2014 17 AI-Tools erkannt");},500);return;}
+document.getElementById("pf").style.width=((step+1)/steps.length*100)+"%";
+let h="";steps.forEach((s,i)=>{if(i<step)h+=`<div class="done">\u2713 ${s}</div>`;else if(i===step)h+=`<div class="active">\u23f3 ${s}</div>`;else h+=`<div>${s}</div>`;});
+document.getElementById("ss").innerHTML=h;step++;setTimeout(tick,1000);}setTimeout(tick,300);}
+
+function openReport(){const w=window.open("","_blank");w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AEGIRA Executive Report</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;padding:40px;max-width:780px;margin:0 auto;color:#1B2B4B;line-height:1.6}h1{font-size:20px;font-weight:700;letter-spacing:.08em}h2{font-size:15px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid #1B2B4B}.sub{color:#4A6080;font-size:12px;margin-bottom:24px}.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.kc{padding:14px;border-radius:10px;text-align:center}.kc .v{font-size:24px;font-weight:700}.kc .l{font-size:11px;color:#4A6080}table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}th,td{padding:8px 10px;border-bottom:1px solid #D0DAE8;text-align:left}th{background:#F4F6F9;font-weight:600;font-size:11px;letter-spacing:.04em}.footer{margin-top:36px;padding-top:14px;border-top:1px solid #D0DAE8;font-size:11px;color:#7A9CC8;text-align:center;letter-spacing:.04em}@media print{body{padding:20px}}</style></head><body><h1>AEGIRA Executive Report</h1><p class="sub">Mustermann GmbH &middot; 30. M\u00e4rz 2026 &middot; AI Readiness Level: 2 von 4</p><h2>1. Discovery-Zusammenfassung</h2><div class="kpi"><div class="kc" style="background:#EBF0F7"><div class="v" style="color:#2E4A7A">17</div><div class="l">AI-Tools erkannt</div></div><div class="kc" style="background:#FEF2F2"><div class="v" style="color:#B91C1C">6</div><div class="l">High Risk / GPAI</div></div><div class="kc" style="background:#FBF5E8"><div class="v" style="color:#C8962A">3</div><div class="l">HITL ausstehend</div></div><div class="kc" style="background:#E8F5EE"><div class="v" style="color:#1A7A4A">8</div><div class="l">Freigegeben</div></div></div><h2>2. Policy-Status</h2><p>AI Policy v1.0 verabschiedet am 15.03.2026. AI Use Policy v1.3 \u2014 zuletzt aktualisiert: 28.03.2026.</p><h2>3. Top-5 Risiko-Tools</h2><table><thead><tr><th>Tool</th><th>Score</th><th>EU AI Act</th><th>Status</th><th>Abteilung</th></tr></thead><tbody><tr><td>Rexx Systems</td><td>9/10</td><td>Annex III Nr. 4</td><td>HITL ausstehend</td><td>HR</td></tr><tr><td>HireVue</td><td>9/10</td><td>Annex III Nr. 4</td><td>HITL ausstehend</td><td>HR</td></tr><tr><td>Zest AI</td><td>9/10</td><td>Annex III Nr. 5</td><td>HITL ausstehend</td><td>Finanzen</td></tr><tr><td>ChatGPT Free</td><td>8/10</td><td>GPAI</td><td>Blockiert</td><td>Mkt, HR, Fin</td></tr><tr><td>DeepSeek</td><td>7/10</td><td>GPAI</td><td>Ungenehmigt</td><td>Produktion</td></tr></tbody></table><h2>4. Schulungsquote</h2><p>68% abgeschlossen. 23% ausstehend. 9% nicht gestartet.</p><h2>5. McKinsey AI Trust Maturity</h2><p>Aktuelles Level: <strong>2 von 4</strong> (Emerging). Empfehlung: HITL-Best\u00e4tigungen abschlie\u00dfen, um Level 3 zu erreichen.</p><div class="footer">Erstellt mit AEGIRA AI Readiness Kit &middot; 30.03.2026 &middot; AI &middot; GOVERNANCE &middot; TRUST</div></body></html>`);w.document.close();}
+
+function showToast(msg){const t=document.getElementById("toast");document.getElementById("toastMsg").textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),3500);}
+
+// MANUAL ENTRY + EU AI ACT WIZARD
+let wizardStep=0,wizardResult=null,manualFormData={};
+function openManualEntry(){
+  wizardStep=0;wizardResult=null;
+  const ov=document.getElementById("manualOverlay");ov.classList.remove("hidden");
+  renderManualStep();
+}
+function closeManual(){document.getElementById("manualOverlay").classList.add("hidden");}
+function renderManualStep(){
+  const ov=document.getElementById("manualOverlay");
+  if(wizardStep===0){
+    ov.innerHTML=`<div class="manual-modal">
+    <div class="mm-header"><h3>AI-System manuell erfassen</h3><button class="panel-close" onclick="closeManual()">&times;</button></div>
+    <div class="mm-body">
+      <div class="mm-row"><div class="mm-field"><label>Tool-/System-Name *</label><input id="me-name" placeholder="z.B. Internes LLM (Llama 3)"></div>
+      <div class="mm-field"><label>Anbieter *</label><input id="me-vendor" placeholder="z.B. Eigenentwicklung, SAP"></div></div>
+      <div class="mm-field"><label>URL / Endpunkt</label><input id="me-url" placeholder="z.B. https://llm.intern.firma.de (leer bei On-Prem)"><div class="mm-hint">Optional \u2014 bei On-Premise-Systemen kann dieses Feld leer bleiben</div></div>
+      <div class="mm-field"><label>Beschreibung *</label><textarea id="me-desc" placeholder="Wof\u00fcr wird dieses AI-System eingesetzt?"></textarea></div>
+      <div class="mm-row"><div class="mm-field"><label>Verantwortlicher (Process Owner) *</label><input id="me-owner" placeholder="z.B. Dr. Anna M\u00fcller, IT-Leitung"></div>
+      <div class="mm-field"><label>Hosting *</label><select id="me-hosting"><option>On-Premise</option><option>Azure</option><option>AWS</option><option>GCP</option><option>SaaS extern</option><option>Unbekannt</option></select></div></div>
+      <div class="mm-row"><div class="mm-field"><label>Datenhaltung *</label><select id="me-residency"><option>EU</option><option>US</option><option>Gemischt</option><option>On-Premise</option><option>Unbekannt</option></select></div>
+      <div class="mm-field"><label>DPA vorhanden *</label><select id="me-dpa"><option>Ja</option><option>Nein</option><option>Nicht anwendbar (Eigenentwicklung)</option></select></div></div>
+      <div class="mm-field"><label>Verarbeitete Datentypen *</label><select id="me-data" multiple size="4" style="min-height:80px"><option selected>Keine sensiblen Daten</option><option>Vertr\u00e4ge</option><option>Personaldaten</option><option>Finanzdaten</option><option>Kundendaten</option><option>Gesundheitsdaten</option></select><div class="mm-hint">Mehrfachauswahl m\u00f6glich (Strg/Cmd + Klick)</div></div>
+      <div class="mm-field"><label>Nutzende Abteilungen *</label><select id="me-depts" multiple size="3" style="min-height:60px"><option>Marketing</option><option>Vertrieb</option><option>HR</option><option>IT</option><option>Finanzen</option><option>Produktion</option><option>Gesch\u00e4ftsf\u00fchrung</option></select></div>
+    </div>
+    <div class="mm-footer"><span class="mm-step">Schritt 1 von 2 \u2014 Stammdaten</span><button class="btn-primary" style="padding:9px 24px;font-size:13px" onclick="goToWizard()">Weiter: EU AI Act Klassifizierung \u2192</button></div>
+    </div>`;
+  } else if(wizardStep>=1 && wizardStep<=5){
+    renderWizardStep();
+  }
+}
+
+function goToWizard(){
+  const name=document.getElementById("me-name").value;
+  if(!name){showToast("Bitte Tool-Name eingeben");return;}
+  manualFormData.name=name;
+  manualFormData.vendor=document.getElementById("me-vendor").value;
+  manualFormData.url=document.getElementById("me-url").value;
+  manualFormData.desc=document.getElementById("me-desc").value;
+  wizardStep=1;renderWizardStep();
+}
+
+const wizardSteps=[
+  {q:"F\u00fchrt dieses System Social Scoring, manipulative Beeinflussung, biometrische Echtzeit-Fernidentifizierung oder Emotionserkennung am Arbeitsplatz durch?",
+   opts:["Ja \u2014 eine oder mehrere dieser Praktiken treffen zu","Nein \u2014 keine dieser Praktiken"],
+   ref:"Art. 5 EU AI Act \u2014 Verbotene Praktiken"},
+  {q:"Ist dieses System ein General Purpose AI Model (z.B. LLM, Foundation Model) oder basiert es auf einem solchen?",
+   opts:["Ja \u2014 es ist ein GPAI oder basiert auf einem GPAI","Nein \u2014 es ist ein spezifisches AI-System (kein GPAI)"],
+   ref:"Art. 51\u201356 EU AI Act \u2014 GPAI-Pflichten"},
+  {q:"In welchem Bereich wird dieses AI-System eingesetzt?",
+   opts:["Biometrische Identifizierung (Annex III Nr. 1)","Kritische Infrastruktur (Annex III Nr. 2)","Bildung und Berufsausbildung (Nr. 3)","Besch\u00e4ftigung und Personalmanagement (Nr. 4)","Zugang zu wesentlichen Dienstleistungen (Nr. 5)","Strafverfolgung (Nr. 6)","Migration und Grenzkontrolle (Nr. 7)","Justiz und demokratische Prozesse (Nr. 8)","Keiner dieser Bereiche"],
+   ref:"Annex III EU AI Act \u2014 Hochrisiko-Bereiche"},
+  {q:"Interagieren Personen direkt mit diesem System, ohne zu wissen, dass es sich um KI handelt? Oder erzeugt es synthetische Inhalte (Text, Bild, Audio, Video)?",
+   opts:["Ja \u2014 Transparenzpflicht besteht","Nein \u2014 Nutzer wissen, dass es KI ist"],
+   ref:"Art. 50 EU AI Act \u2014 Transparenzpflichten"},
+];
+
+let wizardAnswers=[];
+function renderWizardStep(){
+  const ov=document.getElementById("manualOverlay");
+  if(wizardStep>4||wizardResult){
+    // Show result
+    let cat="Minimal Risk",color="var(--green-pale)",textColor="var(--green)",ref="Keine spezifischen Pflichten",icon="\u2713";
+    if(wizardAnswers[0]===0){cat="Verboten (Art. 5)";color="var(--red-pale)";textColor="var(--red)";ref="Art. 5 EU AI Act";icon="\u26d4";}
+    else if(wizardAnswers[1]===0){cat="GPAI (Art. 51\u201356)";color="var(--blue-pale)";textColor="var(--navy-mid)";ref="Art. 51\u201356 EU AI Act";icon="\ud83e\udd16";}
+    else if(wizardAnswers[2]!==undefined && wizardAnswers[2]<8){cat="High Risk (Annex III Nr. "+(wizardAnswers[2]+1)+")";color="var(--red-pale)";textColor="var(--red)";ref="Art. 6 Abs. 2 i.V.m. Annex III Nr. "+(wizardAnswers[2]+1);icon="\u26a0\ufe0f";}
+    else if(wizardAnswers[3]===0){cat="Limited Risk (Art. 50)";color="var(--orange-pale)";textColor="var(--orange)";ref="Art. 50 EU AI Act";icon="\ud83d\udcac";}
+    ov.innerHTML=`<div class="manual-modal">
+    <div class="mm-header"><h3>EU AI Act Klassifizierung</h3><button class="panel-close" onclick="closeManual()">&times;</button></div>
+    <div class="mm-body" style="text-align:center;padding:32px 20px">
+      <div style="font-size:40px;margin-bottom:12px">${icon}</div>
+      <div class="wizard-result" style="background:${color}">
+        <h4 style="color:${textColor}">${manualFormData.name}</h4>
+        <p style="color:${textColor};font-weight:600;font-size:14px;margin:8px 0">${cat}</p>
+        <div class="wr-ref">${ref}</div>
+      </div>
+      <p style="font-size:12px;color:var(--steel);margin-top:16px;line-height:1.6">Dieses Ergebnis wird als Vorschlag in die HITL-Queue eingetragen.<br>Ein Compliance-Beauftragter muss die Klassifizierung best\u00e4tigen.</p>
+    </div>
+    <div class="mm-footer"><span class="mm-step">Ergebnis</span><button class="btn-primary" style="padding:9px 24px;font-size:13px" onclick="submitManualEntry('${cat}')">In HITL-Queue \u00fcbernehmen \u2192</button></div>
+    </div>`;
+    return;
+  }
+  const step=wizardSteps[wizardStep-1];
+  let optsHtml="";
+  step.opts.forEach((o,i)=>{optsHtml+=`<button class="wizard-opt" onclick="wizardAnswer(${i})">${o}</button>`;});
+  ov.innerHTML=`<div class="manual-modal">
+  <div class="mm-header"><h3>EU AI Act Klassifizierung</h3><button class="panel-close" onclick="closeManual()">&times;</button></div>
+  <div class="mm-body">
+    <div class="wizard-q">${step.q}</div>
+    <div class="wizard-opts">${optsHtml}</div>
+    <div style="font-size:11px;color:var(--steel-mid);font-style:italic">${step.ref}</div>
+  </div>
+  <div class="mm-footer"><span class="mm-step">Schritt 2 von 2 \u2014 Klassifizierung (Frage ${wizardStep}/4)</span><button class="btn-sm" onclick="wizardStep=${wizardStep>1?wizardStep-1:0};${wizardStep>1?"wizardAnswers.pop();renderWizardStep()":"renderManualStep()"};">\u2190 Zur\u00fcck</button></div>
+  </div>`;
+}
+
+function wizardAnswer(idx){
+  wizardAnswers[wizardStep-1]=idx;
+  // Short-circuit logic
+  if(wizardStep===1 && idx===0){wizardResult=true;renderWizardStep();return;} // Verboten
+  if(wizardStep===2 && idx===0){wizardResult=true;renderWizardStep();return;} // GPAI
+  if(wizardStep===3 && idx<8){wizardResult=true;renderWizardStep();return;}   // High Risk
+  if(wizardStep===4){wizardResult=true;renderWizardStep();return;}            // Limited or Minimal
+  wizardStep++;renderWizardStep();
+}
+
+function submitManualEntry(cat){
+  closeManual();
+  // Add to HITL queue
+  const newId=hitlData.length+10;
+  hitlData.push({id:newId,tool:manualFormData.name,url:manualFormData.url||"(On-Premise)",cls:cat,dept:"Manuell erfasst",acc:0,since:"30.03.2026"});
+  buildHitl();
+  showToast(manualFormData.name+" erfasst \u2014 HITL-Best\u00e4tigung ausstehend");
+  wizardStep=0;wizardResult=null;wizardAnswers=[];manualFormData={};
+}
+function showTrust(){document.getElementById("login").classList.add("hidden");document.getElementById("trust").classList.remove("hidden");}
+function showApp(){document.getElementById("trust").classList.add("hidden");document.getElementById("app").classList.remove("hidden");buildHM();buildHitl();buildReq();}
+</script>
+</body>
+</html>
