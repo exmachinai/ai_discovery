@@ -202,20 +202,26 @@ button{font-family:inherit;cursor:pointer}
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
 .summary{grid-template-columns:1fr 1fr}
-.topbar-right{display:none}
+.topbar{flex-wrap:wrap;gap:8px;padding:10px 12px}
+.topbar-right{display:flex;flex-wrap:wrap;gap:6px;width:100%;order:3}
+.topbar-right .btn-sm{flex:1;min-width:0;text-align:center;padding:8px 8px;font-size:11px}
 .report-grid{grid-template-columns:1fr}
 .hitl-card,.req-card{flex-direction:column}
-.hitl-actions{width:100%}
+.hitl-actions{width:100%;flex-wrap:wrap}
+.hitl-actions button{flex:1;min-width:80px}
 .panel{width:100%}
 .trust-grid{grid-template-columns:1fr}
+.card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.hm-table{min-width:600px}
 }
 @media(max-width:480px){
 .summary{grid-template-columns:1fr 1fr}
 .scard .sc-val{font-size:22px}
-.hm-table{font-size:11px}
+.hm-table{font-size:11px;min-width:500px}
 .hm-cell{font-size:13px;min-width:36px}
-.content{padding:12px}
-.tab-btn{padding:10px 12px;font-size:12px}
+.content{padding:10px}
+.tab-btn{padding:10px 10px;font-size:11px}
+.topbar-right .btn-sm{font-size:10px;padding:7px 6px}
 }
 </style>
 </head>
